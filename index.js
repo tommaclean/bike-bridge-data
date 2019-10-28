@@ -1,16 +1,21 @@
 let ctx = document.getElementById("bikeChart").getContext('2d')
 
-let data = [606, 1446, 1915, 1430, 5397]
 
+let brBridge = []
+let manBridge = []
+let willBridge = []
+let queenBridge = []
+let totalRiders = []
+
+let data = [brBridge, manBridge, willBridge, queenBridge, totalRiders]
 let labels = ["Brooklyn Bridge", "Manhattan Brdige", "Williamsburg Bridge", "Queensboro Bridge", "Total"]
-
 
 let myChart = new Chart(ctx, {
     type: 'horizontalBar',
     data: {
         labels: labels,
         datasets: [{
-            label: 'Cyclist Count on 4/1/17', // Name the series
+            label: 'Cyclist Count - East River Bridges', // Name the series
             data: data, // Specify the data values array
             backgroundColor: [ // Specify custom colors
                 'rgba(255, 99, 132, 0.2)',
@@ -33,7 +38,7 @@ let myChart = new Chart(ctx, {
     },
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
+      maintainAspectRatio: true, // Add to prevent default behaviour of full-width/height
       scales: {
             yAxes: [{
                 gridLines: {
@@ -53,5 +58,57 @@ let myChart = new Chart(ctx, {
             }]
         }
 
-    }
+    },
+    update: function(reset) {}
 });
+
+document.querySelector(".monthSelect").addEventListener("click", monthSelected)
+
+function monthSelected(event){
+    fetch('http://localhost:3000/dates')
+      .then(response => {return response.json()}).then(data => {sumAllMonthRiders(data, event)})
+      }
+
+
+function sumAllMonthRiders(countData, event){
+    let newTotal
+    let totalRidersSum = []
+    let brBridgeSum = []
+    let manBridgeSum = []
+    let willBridgeSum = []
+    let queenBridgeSum = []
+    countData.forEach(function(entry){
+      if (entry.month === event.target.id){
+          newTotal = parseInt(entry.total.replace(/,/g, ""));
+          totalRidersSum.push(newTotal)
+
+          newBrBridgeTotal = parseInt(entry.brBridge.replace(/,/g, ""));
+          brBridgeSum.push(newBrBridgeTotal)
+
+          newManBrTotal = parseInt(entry.manBridge.replace(/,/g, ""));
+          manBridgeSum.push(newManBrTotal)
+
+          newWillBrTotal = parseInt(entry.willBridge.replace(/,/g, ""));
+          willBridgeSum.push(newWillBrTotal)
+
+          newQueenBrTotal = parseInt(entry.queenBridge.replace(/,/g, ""));
+          queenBridgeSum.push(newQueenBrTotal)
+      }
+    })
+        const reducer = (accumulator, currentValue) => accumulator + currentValue
+        let totalRiders = totalRidersSum.reduce(reducer, 0)
+        let brBridge = brBridgeSum.reduce(reducer, 0)
+        let manBridge = manBridgeSum.reduce(reducer, 0)
+        let willBridge = willBridgeSum.reduce(reducer, 0)
+        let queenBridge = queenBridgeSum.reduce(reducer, 0)
+
+        myChart.data.datasets[0].data[4] = totalRiders
+
+        myChart.data.datasets[0].data[3] = queenBridge
+        myChart.data.datasets[0].data[2] = willBridge
+        myChart.data.datasets[0].data[1] = manBridge
+        myChart.data.datasets[0].data[0] = brBridge
+
+        myChart.update()
+        console.log(totalRiders)
+}
