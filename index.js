@@ -6,12 +6,15 @@ let manBridge = []
 let willBridge = []
 let queenBridge = []
 let totalRiders = []
+let rain = []
+let labels = ["Brooklyn Bridge", "Manhattan Brdige", "Williamsburg Bridge", "Queensboro Bridge", "Total", "Rain (mm)"]
+let data = [brBridge, manBridge, willBridge, queenBridge, totalRiders, rain]
 
-let data = [brBridge, manBridge, willBridge, queenBridge, totalRiders]
-let labels = ["Brooklyn Bridge", "Manhattan Brdige", "Williamsburg Bridge", "Queensboro Bridge", "Total"]
+
+
 
 let myChart = new Chart(ctx, {
-    type: 'horizontalBar',
+    type: 'bar',
     data: {
         labels: labels,
         datasets: [{
@@ -35,6 +38,7 @@ let myChart = new Chart(ctx, {
             ],
             borderWidth: 2 // Specify bar border width
         }]
+
     },
     options: {
       responsive: true, // Instruct chart js to respond nicely.
@@ -56,13 +60,23 @@ let myChart = new Chart(ctx, {
                     beginAtZero: true
                 }
             }]
+        },
+      plugins: {
+            // Change options for ALL labels of THIS CHART
+            datalabels: {
+                color: '#cccccc',
+                anchor: 'top',
+                font: {
+                  style: 'bold',
+                  size: 24
+                }
+            }
         }
-
     },
     update: function(reset) {}
 });
 
-document.querySelector(".monthSelect").addEventListener("click", monthSelected)
+document.querySelector(".monthSelect").addEventListener("change", monthSelected)
 
 function monthSelected(event){
     fetch('http://localhost:3000/dates')
@@ -71,6 +85,10 @@ function monthSelected(event){
 
 
 function sumAllMonthRiders(countData, event){
+    let splitDate = event.target.value.split("-")
+    let month = splitDate[1]
+    let day = splitDate[2]
+    let rain = []
     let newTotal
     let totalRidersSum = []
     let brBridgeSum = []
@@ -78,7 +96,7 @@ function sumAllMonthRiders(countData, event){
     let willBridgeSum = []
     let queenBridgeSum = []
     countData.forEach(function(entry){
-      if (entry.month === event.target.id){
+      if (entry.month === month && entry.day === day){
           newTotal = parseInt(entry.total.replace(/,/g, ""));
           totalRidersSum.push(newTotal)
 
@@ -93,6 +111,8 @@ function sumAllMonthRiders(countData, event){
 
           newQueenBrTotal = parseInt(entry.queenBridge.replace(/,/g, ""));
           queenBridgeSum.push(newQueenBrTotal)
+
+          rain.push(entry.rain)
       }
     })
         const reducer = (accumulator, currentValue) => accumulator + currentValue
@@ -102,13 +122,11 @@ function sumAllMonthRiders(countData, event){
         let willBridge = willBridgeSum.reduce(reducer, 0)
         let queenBridge = queenBridgeSum.reduce(reducer, 0)
 
+        myChart.data.datasets[0].data[5] = Math.round((rain * 25.4) * 100) / 100
         myChart.data.datasets[0].data[4] = totalRiders
-
         myChart.data.datasets[0].data[3] = queenBridge
         myChart.data.datasets[0].data[2] = willBridge
         myChart.data.datasets[0].data[1] = manBridge
         myChart.data.datasets[0].data[0] = brBridge
-
         myChart.update()
-        console.log(totalRiders)
 }

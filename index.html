@@ -2,31 +2,24 @@
 <html>
   <head>
     <title>Bike Bridge Data Display!</title>
-    <style>
-      body {
-      background-color: #000000
-      }
-      h2 {
-        color: #737373
-      }
-      li {
-        color: #737373
-      }
-      </style>
+    <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>
       <canvas id="bikeChart" width="2000" height="500"></canvas>
-        <h2>Select Month (2017)</h2>
-        <ul class="monthSelect">
-          <li id="4">April</li>
-          <li id="5">May</li>
-          <li id="6">June</li>
-          <li id="7">July</li>
-          <li id="8">August</li>
-          <li id="9">September</li>
-          <li id="10">October</li>
-        </ul>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js'></script>
+        <h2>Select Date</h2>
+        <!-- <select class="oldMonthSelect">
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+        </select> -->
+
+        <input class="monthSelect" name="when" type="date" min="2017-04-01" max="2017-10-31">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
       <script type="text/javascript" src="index.js"></script>
     </body>
 </html>
