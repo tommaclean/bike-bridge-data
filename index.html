@@ -4,22 +4,26 @@
     <title>Bike Bridge Data Display!</title>
     <link rel="stylesheet" type="text/css" href="main.css">
     </head>
-    <body>
-      <canvas id="bikeChart" width="2000" height="500"></canvas>
-        <h2>Select Date</h2>
-        <!-- <select class="oldMonthSelect">
-          <option value="4">April</option>
-          <option value="5">May</option>
-          <option value="6">June</option>
-          <option value="7">July</option>
-          <option value="8">August</option>
-          <option value="9">September</option>
-          <option value="10">October</option>
-        </select> -->
+    <body class="body">
+      <h1>VISUALIZATION OF <span data-shadow-text="Text-Shadow">DAILY CYCLIST COUNT ON EAST RIVER BRIDGES</span></h1>
+      <div class="box">
+          <div class="grid-33">
+            <h2>Select Date</h2>
+            <h4>Current Date:<span id="dateDisplay"></span></h4>
+            <p><input class="monthSelect" name="when" type="date" min="2017-04-01" max="2017-10-31"></p>
+            <br><br>
+            <p>
+              Using the <a href="https://opendata.cityofnewyork.us/" target="_new">NYC Open Data</a>, this page displays the cyclist count on each of the four East River Bridges beginning on April 1, 2017 and ending on October 31, 2017. Along with the cyclist count for each day you will also notice to the far right the amount of rainfall per day (measure in mm).
+            </p>
+          </div>
+          <div class="grid-66">
+            <canvas id="bikeChart"></canvas>
+          </div>
+        </div>
 
-        <input class="monthSelect" name="when" type="date" min="2017-04-01" max="2017-10-31">
+      </div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
-      <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="index.js"></script>
     </body>
 </html>

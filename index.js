@@ -1,24 +1,21 @@
 let ctx = document.getElementById("bikeChart").getContext('2d')
 
-
 let brBridge = []
 let manBridge = []
 let willBridge = []
 let queenBridge = []
 let totalRiders = []
 let rain = []
+let dateDisplay
 let labels = ["Brooklyn Bridge", "Manhattan Brdige", "Williamsburg Bridge", "Queensboro Bridge", "Total", "Rain (mm)"]
 let data = [brBridge, manBridge, willBridge, queenBridge, totalRiders, rain]
-
-
-
 
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: labels,
         datasets: [{
-            label: 'Cyclist Count - East River Bridges', // Name the series
+            label: `Toggle Data On/Off`, // Name the series
             data: data, // Specify the data values array
             backgroundColor: [ // Specify custom colors
                 'rgba(255, 99, 132, 0.2)',
@@ -46,7 +43,7 @@ let myChart = new Chart(ctx, {
       scales: {
             yAxes: [{
                 gridLines: {
-                  color: "#737373"
+                  color: "#d9d7da"
                 },
                 ticks: {
                     beginAtZero: true
@@ -54,7 +51,7 @@ let myChart = new Chart(ctx, {
             }],
             xAxes: [{
                 gridLines: {
-                  color: "#737373"
+                  color: "#d9d7da"
                 },
                 ticks: {
                     beginAtZero: true
@@ -64,8 +61,9 @@ let myChart = new Chart(ctx, {
       plugins: {
             // Change options for ALL labels of THIS CHART
             datalabels: {
-                color: '#cccccc',
-                anchor: 'top',
+                color: '#d9d7da',
+                align: 'end',
+                offset: 10,
                 font: {
                   style: 'bold',
                   size: 24
@@ -79,15 +77,16 @@ let myChart = new Chart(ctx, {
 document.querySelector(".monthSelect").addEventListener("change", monthSelected)
 
 function monthSelected(event){
+
     fetch('http://localhost:3000/dates')
       .then(response => {return response.json()}).then(data => {sumAllMonthRiders(data, event)})
-      }
-
+}
 
 function sumAllMonthRiders(countData, event){
     let splitDate = event.target.value.split("-")
     let month = splitDate[1]
     let day = splitDate[2]
+    let dateDisplay = month + day + " 2017"
     let rain = []
     let newTotal
     let totalRidersSum = []
