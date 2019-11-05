@@ -1,12 +1,14 @@
 let ctx = document.getElementById("bikeChart").getContext('2d')
 
-let brBridge = []
-let manBridge = []
-let willBridge = []
-let queenBridge = []
-let totalRiders = []
-let rain = []
+let brBridge = 606
+let manBridge = 1446
+let willBridge = 1915
+let queenBridge = 1430
+let totalRiders = 5397
+let rain = 0
 let dateDisplay
+let tempHi
+let tempLo
 let labels = ["Brooklyn Bridge", "Manhattan Brdige", "Williamsburg Bridge", "Queensboro Bridge", "Total", "Rain (mm)"]
 let data = [brBridge, manBridge, willBridge, queenBridge, totalRiders, rain]
 
