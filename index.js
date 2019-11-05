@@ -38,6 +38,7 @@ let myChart = new Chart(ctx, {
 
     },
     options: {
+      legend: false,
       responsive: true, // Instruct chart js to respond nicely.
       maintainAspectRatio: true, // Add to prevent default behaviour of full-width/height
       scales: {
