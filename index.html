@@ -9,12 +9,16 @@
       <div class="box">
           <div class="grid-33">
             <h2>Select Date</h2>
-            <h4>Current Date:<span id="dateDisplay"></span></h4>
-            <p><input class="monthSelect" name="when" type="date" min="2017-04-01" max="2017-10-31"></p>
+            <h4>Current Date:   <span id="dateDisplay"></span><input class="monthSelect" name="when" type="date" min="2017-04-01" max="2017-10-31" value="2017-04-01"></h4>
             <br><br>
-            <p>
-              Using the <a href="https://opendata.cityofnewyork.us/" target="_new">NYC Open Data</a>, this page displays the cyclist count on each of the four East River Bridges beginning on April 1, 2017 and ending on October 31, 2017. Along with the cyclist count for each day you will also notice to the far right the amount of rainfall per day (measure in mm).
-            </p>
+
+              <img src="open_data_logo.png" width="480" heigh="83.1">
+
+
+              <p>
+                Using the <a href="https://opendata.cityofnewyork.us/" target="_new">NYC Open Data</a>, this page displays the cyclist count on each of the four East River Bridges beginning on April 1, 2017 and ending on October 31, 2017. Along with the cyclist count for each day you will also notice to the far right the amount of rainfall per day (measure in mm).
+              </p>
+          
           </div>
           <div class="grid-66">
             <canvas id="bikeChart"></canvas>
