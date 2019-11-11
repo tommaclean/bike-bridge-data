@@ -1,6 +1,7 @@
 body {
 background-color: #262528;
-color: #d9d7da
+color: #d9d7da;
+margin-left: 30px
 }
 h1 {
     font: 600 1.5em/1 'Raleway', sans-serif;
@@ -18,7 +19,7 @@ h2 {
   font-size: 22px;
   font-weight: 500;
   line-height: 0px;
-  margin: 0 0 35;
+  margin: 0 0 0;
 }
 h4 {
   color: #d9d7da;

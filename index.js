@@ -114,7 +114,7 @@ function sumAllMonthRiders(countData, event){
           newQueenBrTotal = parseInt(entry.queenBridge.replace(/,/g, ""));
           queenBridgeSum.push(newQueenBrTotal)
 
-          rain.push(entry.rain)
+          rain = entry.rain
       }
     })
         const reducer = (accumulator, currentValue) => accumulator + currentValue
