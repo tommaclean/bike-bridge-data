@@ -5,3 +5,5 @@ Using [NYC Open Data](https://opendata.cityofnewyork.us/), this page displays th
 ## Getting Started
 
 Visit a working demo [here](http://cyclist-count.herokuapp.com/)
+
+![CyclistCount screenshot](http://cyclist-count.herokuapp.com/screenshot.png)
