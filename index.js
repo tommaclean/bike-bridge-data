@@ -81,7 +81,7 @@ document.querySelector(".monthSelect").addEventListener("change", monthSelected)
 
 function monthSelected(event){
 
-    fetch('https://cors-anywhere.herokuapp.com/https://cyclist-count.herokuapp.com/db.json')
+    fetch('https://cors-anywhere.herokuapp.com/https://cyclist-count.herokuapp.com/db.json', {mode: 'cors'})
       .then(response => {return response.json()}).then(data => {sumAllMonthRiders(data, event)})
 }
 
@@ -97,7 +97,6 @@ function sumAllMonthRiders(countData, event){
     let manBridgeSum = []
     let willBridgeSum = []
     let queenBridgeSum = []
-    console.log(countData)
     countData.dates.forEach(function(entry){
       if (entry.month === month && entry.day === day){
           newTotal = parseInt(entry.total.replace(/,/g, ""));
