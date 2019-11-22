@@ -81,7 +81,7 @@ document.querySelector(".monthSelect").addEventListener("change", monthSelected)
 
 function monthSelected(event){
 
-    fetch('http://localhost:3000/dates')
+    fetch('https://cors-anywhere.herokuapp.com/https://cyclist-count.herokuapp.com/db.json')
       .then(response => {return response.json()}).then(data => {sumAllMonthRiders(data, event)})
 }
 
@@ -97,7 +97,8 @@ function sumAllMonthRiders(countData, event){
     let manBridgeSum = []
     let willBridgeSum = []
     let queenBridgeSum = []
-    countData.forEach(function(entry){
+    console.log(countData)
+    countData.dates.forEach(function(entry){
       if (entry.month === month && entry.day === day){
           newTotal = parseInt(entry.total.replace(/,/g, ""));
           totalRidersSum.push(newTotal)
@@ -114,7 +115,7 @@ function sumAllMonthRiders(countData, event){
           newQueenBrTotal = parseInt(entry.queenBridge.replace(/,/g, ""));
           queenBridgeSum.push(newQueenBrTotal)
 
-          rain = entry.rain
+          rain.push(entry.rain)
       }
     })
         const reducer = (accumulator, currentValue) => accumulator + currentValue
