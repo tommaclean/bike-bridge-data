@@ -82,10 +82,10 @@ document.querySelector(".dateSelect").addEventListener("change", dateSelected)
 function dateSelected(event){
 
     fetch('https://cors-anywhere.herokuapp.com/https://cyclist-count.herokuapp.com/db.json', {mode: 'cors'})
-      .then(response => {return response.json()}).then(data => {sumAllMonthRiders(data, event)})
+      .then(response => {return response.json()}).then(data => {sumDailyRiders(data, event)})
 }
 
-function sumAllMonthRiders(countData, event){
+function sumDailyRiders(countData, event){
     let splitDate = event.target.value.split("-")
     let month = splitDate[1]
     let day = splitDate[2]
