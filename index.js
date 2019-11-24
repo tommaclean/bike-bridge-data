@@ -6,6 +6,7 @@ let willBridge = 1915
 let queenBridge = 1430
 let totalRiders = 5397
 let rain = 0
+let dateDisplay
 let labels = ["Brooklyn Bridge", "Manhattan Brdige", "Williamsburg Bridge", "Queensboro Bridge", "Total", "Rain (mm)"]
 let data = [brBridge, manBridge, willBridge, queenBridge, totalRiders, rain]
 
