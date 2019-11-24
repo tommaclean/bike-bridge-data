@@ -75,7 +75,7 @@ let myChart = new Chart(ctx, {
     update: function(reset) {}
 });
 
-document.querySelector(".dateSelect").addEventListener("change", dateSelected)
+document.querySelector(".monthSelect").addEventListener("change", dateSelected)
 
 function dateSelected(event){
 
