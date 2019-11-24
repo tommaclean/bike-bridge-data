@@ -77,9 +77,9 @@ let myChart = new Chart(ctx, {
     update: function(reset) {}
 });
 
-document.querySelector(".monthSelect").addEventListener("change", monthSelected)
+document.querySelector(".dateSelect").addEventListener("change", dateSelected)
 
-function monthSelected(event){
+function dateSelected(event){
 
     fetch('https://cors-anywhere.herokuapp.com/https://cyclist-count.herokuapp.com/db.json', {mode: 'cors'})
       .then(response => {return response.json()}).then(data => {sumAllMonthRiders(data, event)})
