@@ -1,5 +1,6 @@
 let ctx = document.getElementById("bikeChart").getContext('2d')
 
+// Default data
 let brBridge = 606
 let manBridge = 1446
 let willBridge = 1915
@@ -84,6 +85,7 @@ function dateSelected(event){
 }
 
 function sumDailyRiders(countData, event){
+    // Splitting the date to filter based upon month and day
     let splitDate = event.target.value.split("-")
     let month = splitDate[1]
     let day = splitDate[2]
